@@ -1,0 +1,132 @@
+            
+            
+            
+                       Scienfific Subroutine Package for the PC - SSP/PC
+            
+            This software is a minimal adaptation of the 1960's IBM  SHARE  tape  to
+            run on an MS-DOS or PC-DOS personal computer. The only changes that have
+            been made  have  been  made  to  make  the   subroutines  compile  under
+            Microsoft Fortran. All modules compile under Microsoft Fortran, however,
+            several of the modules generate warnings because they have ancient  code
+            that likes to jump in and out of DO-loops.  In addition, the line number
+            identifications have been stripped off the modules to reduce the  module
+            size.
+            
+            Complete source is provided for each  module  in  the  original  Fortran
+            "spagetti  code"  style.  This  code  is  provided  this way so that the
+            original code survives without errors which have been introduced as each
+            of the modules have been copied and republished in various texts through
+            the past 20 years.
+            
+            This code is provided as "Shareware" or "Donationware"  or  "Beggerware"
+            depending  upon  your  outlook  of monetary solicitations in the current
+            vogue in the personal computer software arena. I have spent the past two
+            years,  part  time, working on these modules and now release them to you
+            for possible use. Please feel free to use them in any way you  see  fit.
+            If  you  pass  these on to someone else, please pass them on in complete
+            form with the documentation intact.
+            
+            If you think that my efforts should be rewarded, I  would  appreciate  a
+            donation to the address listed below.  I am suggesting that $30.00 would
+            be very nice. If you would like  a  copy  of  the  original  SHARE  tape
+            downloaded  onto  floppies  I  will  supply  that  also  for  media  and
+            preparation donations, again, to the address listed below, as follows:
+            
+            
+                      Non-archived files on 10 floppies
+                      (total of 40496 lines of code)                $ 75.00
+            
+                      Archived files (10 archives) on two floppies
+                      (same lines of code)                          $ 39.95
+            
+            
+            Note that these files are not split into modules but are 80 column  card
+            images  downloaded  onto  floppies including sequence id's in columns 73
+            through 80. The files are split between modules, not at  arbitrary  line
+            numbers.
+            
+            In addition, I have converted these modules into F77 format. I  did  not
+            use  block structured IF - ELSE IF - ELSE constructions, but left the GO
+            TO statements at obvious, visible spots for ready conversion.  This  was
+            done  because  I  had  a  need to be able to compile these modules using
+            mainframe compilers that did not support the F77 constructs.  The  code,
+            however,  is  reformatted  to  be  much  more readible, using logical IF
+            statements to restore some of the sense that the original  authors  were
+            trying  to  accomplish.  I  have,  however,  eliminated  the  forest  of
+            convoluted arithmetic IF statements with multiple, unreadable  statement
+            label transfers whenever possible.
+            
+            
+            
+            
+            
+                                               1
+            
+            
+            
+            
+            
+            
+            
+            
+            If you want this version, please send $99.95 to the following address:
+            
+                                 Todd Enterprises
+                                 P. O. Box 1461
+                                 Southampton PA 18966
+            
+            Note that this copy will be copyrighted  but  will  include  all  source
+            modules,  and,  as  I  prepare  them,  drivers and example programs. For
+            schools and plants desiring a site license, I will make these available.
+            Please contact me at the above address.
+            
+            It is my intentions  to  translate  these  modules  into  several  other
+            languages  and  make  the source available to other users. If I see that
+            this concept is well received (you know how I am going to measure this),
+            then  I  will  hurry  these  translations.  The  languages  I  intend to
+            translate these modules to include C, Turbo Pascal,  Quick  Basic,  and,
+            possibly,  Ada and Modula-2.  Please let me know which of these you find
+            the most interesting and would like to see first. I am  planning  to  do
+            the C version first.
+            
+            I hope the others of you who are writing Shareware  (etc.)  programs  or
+            are  placing  programs into the public domain (even better) will include
+            the sources. I am also working on a number of BIOS  revisions  and  hard
+            disk  (>32MB)  partitioning  programs.  I  plan to put these into either
+            shareware or into the public domain. When I do so, I will include source
+            whenever possible.
+            
+                                     Robert H. (Bob) Todd
+            
+            Unfortunately, I must include the following to cover my you know what.
+            
+            
+            
+                                            WARRANTY
+            
+            
+            Todd Enterprises makes no warranty of  any  kind,  express  or  implied,
+            including  without  limitation, any warranties of merchantability and/or
+            fitness for a particular purpose. Todd Enterprises shall not  be  liable
+            for  any  damages,  whether  direct,  indirect, special or consequential
+            arising from a failure of these subprograms to  operate  in  the  manner
+            desired   by  the   user.  Todd  Enterprises shall not be liable for any
+            damage to data or property which may be caused directly or indirectly by
+            use of these subprograms.
+            
+            IN NO EVENT WILL Todd Enterprises BE LIABLE  TO  YOU  FOR  ANY  DAMAGES,
+            INCLUDING  ANY  LOST  PROFITS,  LOST  SAVINGS  OR  OTHER  INCIDENTAL  OR
+            CONSEQUENTIAL DAMAGES ARISING OUT OF YOUR USE OR INABILITY TO USE  THESE
+            SUBPROGRAMS, OR FOR ANY CLAIM BY ANY OTHER PARTY.
+            
+            
+            
+            
+            
+            
+            
+            
+                                               2
+            
+            
+            
