@@ -149,6 +149,7 @@ SSUB — subtract scalar from a matrix
 SMPY — matrix multiplied by a scalar 
 
 SDIV — matrix divided by a scalar 
+
 RADD — add row of one matrix to row of another matrix 
 
 CADD — add column of one matrix to column of another matrix 
