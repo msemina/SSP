@@ -1,0 +1,128 @@
+C
+C     ..................................................................
+C
+C        SUBROUTINE FACTR
+C
+C        PURPOSE
+C           FACTORIZATION OF THE MATRIX A INTO A PRODUCT OF A LOWER
+C           TRIANGULAR MATRIX L AND AN UPPER TRIANGULAR MATRIX U.  L HAS
+C           UNIT DIAGONAL WHICH IS NOT STORED.
+C
+C        USAGE
+C           CALL FACTR(A,PER,N,IA,IER)
+C
+C        DESCRIPTION OF PARAMETERS
+C           A      MATRIX A
+C           PER    ONE DIMENSIONAL ARRAY WHERE PERMUTATIONS OF ROWS OF
+C                  THE MATRIX ARE STORED
+C                  DIMENSION OF PER MUST BE GREATER THAN OR EQUAL TO N
+C           N      ORDER OF THE MATRIX A
+C           IA     SIZE OF THE FIRST DIMENSION ASSIGNED TO THE ARRAY A
+C                  IN THE CALLING PROGRAM WHEN THE MATRIX IS IN DOUBLE
+C                  SUBSCRIPTED DATA STORAGE MODE.  IA=N WHEN THE MATRIX
+C                  IS IN SSP VECTOR STORAGE MODE.
+C           IER    ERROR INDICATOR WHICH IS ZERO IF THERE IS NO ERROR,
+C                  AND IS THREE IF THE PROCEDURE FAILS.
+C
+C        REMARKS
+C           THE ORIGINAL MATRIX, A,IS REPLACED BY THE TRIANGULAR FACTORS
+C
+C        SUBROUTINES AND FUNCTION SUBPROGRAMS REQUIRED
+C           NONE
+C
+C        METHOD
+C           SUCCESSIVE COMPUTATION OF THE COLUMNS OF L AND THE
+C           CORRESPONDING ROWS OF U.
+C
+C        REFERENCES
+C           J. H. WILKINSON - THE ALGEBRAIC EIGENVALUE PROBLEM -
+C           CLARENDON PRESS, OXFORD, 1965. H. J. BOWDLER, R. S. MARTIN,
+C           G. PETERS, AND J. H. WILKINSON - 'SOLUTION OF REAL AND
+C           COMPLEX SYSTEMS OF LINEAR EQUATIONS', NUMERISCHE MATHEMATIK,
+C           VOL. 8, NO. 3, 1966, P. 217-234.
+C
+C     ..................................................................
+C
+      SUBROUTINE FACTR(A,PER,N,IA,IER)
+      DIMENSION A(1),PER(1)
+      DOUBLE PRECISION DP
+C
+C        COMPUTATION OF WEIGHTS FOR EQUILIBRATION
+C
+      DO 20 I=1,N
+      X=0.
+      IJ=I
+      DO 10 J=1,N
+      IF (ABS(A(IJ))-X)10,10,5
+    5 X=ABS(A(IJ))
+   10 IJ=IJ+IA
+      IF (X) 110,110,20
+   20 PER(I)=1./X
+      I0=0
+      DO 100 I=1,N
+      IM1=I-1
+      IP1=I+1
+      IPIVOT=I
+      X=0.
+C
+C        COMPUTATION OF THE ITH COLUMN OF L
+C
+      DO 50 K=I,N
+      KI=I0+K
+      DP=A(KI)
+      IF (I-1) 110,40,25
+   25 KJ=K
+      DO 30 J=1,IM1
+      IJ=I0+J
+      DP=DP-1.D0*A(KJ)*A(IJ)
+   30 KJ=KJ+IA
+      A(KI)=DP
+C
+C        SEARCH FOR EQUILIBRATED PIVOT
+C
+   40 IF (X-DABS(DP)*PER(K))45,50,50
+   45 IPIVOT=K
+      X=DABS(DP)*PER(K)
+   50 CONTINUE
+      IF (X)110,110,55
+C
+C        PERMUTATION OF ROWS IF REQUIRED
+C
+   55 IF (IPIVOT-I) 110,70,57
+   57 KI=IPIVOT
+      IJ=I
+      DO 60 J=1,N
+      X=A(IJ)
+      A(IJ)=A(KI)
+      A(KI)=X
+      KI=KI+IA
+   60 IJ=IJ+IA
+      PER(IPIVOT)=PER(I)
+   70 PER(I)=IPIVOT
+      IF (I-N) 72,100,100
+   72 IJ=I0+I
+      X=A(IJ)
+C
+C        COMPUTATION OF THE ITH ROW OF U
+C
+      K0=I0+IA
+      DO 90 K=IP1,N
+      KI=I0+K
+      A(KI)=A(KI)/X
+      IF (I-1)110,90,75
+   75 IJ=I
+      KI=K0+I
+      DP=A(KI)
+      DO 80 J=1,IM1
+      KJ=K0+J
+      DP=DP-1.D0*A(IJ)*A(KJ)
+   80 IJ=IJ+IA
+      A(KI)=DP
+   90 K0=K0+IA
+  100 I0=I0+IA
+      IER=0
+      RETURN
+  110 IER=3
+      RETURN
+      END
+
